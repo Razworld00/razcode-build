@@ -1,0 +1,150 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# Razcode Build — Multi-Provider Configuration (Local-First)
+# Copy to:  ~/.razcode/config.toml
+# ═══════════════════════════════════════════════════════════════════════════
+
+[models]
+default = "gpt-oss-120b-cloud"
+
+# ─── YOUR OLLAMA MODELS (from `ollama list`) ───────────────────────────────
+# All use the local OpenAI-compatible endpoint. No API key required.
+
+[model.gpt-oss-120b-cloud]
+model = "gpt-oss:120b-cloud"
+base_url = "http://localhost:11434/v1"
+name = "GPT-OSS 120B Cloud"
+description = "Primary local/cloud model via Ollama"
+api_backend = "chat_completions"
+context_window = 128000
+
+[model.nemotron-3-super-cloud]
+model = "nemotron-3-super:cloud"
+base_url = "http://localhost:11434/v1"
+name = "Nemotron 3 Super Cloud"
+api_backend = "chat_completions"
+context_window = 128000
+
+[model.qwen3.5-cloud]
+model = "qwen3.5:cloud"
+base_url = "http://localhost:11434/v1"
+name = "Qwen 3.5 Cloud"
+api_backend = "chat_completions"
+context_window = 128000
+
+[model.phi3]
+model = "phi3:latest"
+base_url = "http://localhost:11434/v1"
+name = "Phi-3"
+api_backend = "chat_completions"
+context_window = 128000
+
+[model.codegemma-2b]
+model = "codegemma:2b"
+base_url = "http://localhost:11434/v1"
+name = "CodeGemma 2B"
+api_backend = "chat_completions"
+context_window = 8192
+
+[model.qwen2.5-coder-1.5b]
+model = "qwen2.5-coder:1.5b"
+base_url = "http://localhost:11434/v1"
+name = "Qwen2.5-Coder 1.5B"
+api_backend = "chat_completions"
+context_window = 32768
+
+[model.deepseek-v4-flash-cloud]
+model = "deepseek-v4-flash:cloud"
+base_url = "http://localhost:11434/v1"
+name = "DeepSeek V4 Flash Cloud"
+api_backend = "chat_completions"
+context_window = 128000
+
+[model.kimi-k3-cloud]
+model = "kimi-k3:cloud"
+base_url = "http://localhost:11434/v1"
+name = "Kimi K3 Cloud"
+api_backend = "chat_completions"
+context_window = 128000
+
+[model.gemma4-cloud]
+model = "gemma4:cloud"
+base_url = "http://localhost:11434/v1"
+name = "Gemma 4 Cloud"
+api_backend = "chat_completions"
+context_window = 128000
+
+[model.minimax-m3-cloud]
+model = "minimax-m3:cloud"
+base_url = "http://localhost:11434/v1"
+name = "Minimax M3 Cloud"
+api_backend = "chat_completions"
+context_window = 128000
+
+[model.glm-5.1-cloud]
+model = "glm-5.1:cloud"
+base_url = "http://localhost:11434/v1"
+name = "GLM 5.1 Cloud"
+api_backend = "chat_completions"
+context_window = 128000
+
+[model.glm-5.2-cloud]
+model = "glm-5.2:cloud"
+base_url = "http://localhost:11434/v1"
+name = "GLM 5.2 Cloud"
+api_backend = "chat_completions"
+context_window = 128000
+
+[model.kimi-k2.6-cloud]
+model = "kimi-k2.6:cloud"
+base_url = "http://localhost:11434/v1"
+name = "Kimi K2.6 Cloud"
+api_backend = "chat_completions"
+context_window = 128000
+
+[model.minimax-m2.5-cloud]
+model = "minimax-m2.5:cloud"
+base_url = "http://localhost:11434/v1"
+name = "Minimax M2.5 Cloud"
+api_backend = "chat_completions"
+context_window = 128000
+
+[model.kimi-k2.7-code-cloud]
+model = "kimi-k2.7-code:cloud"
+base_url = "http://localhost:11434/v1"
+name = "Kimi K2.7 Code Cloud"
+api_backend = "chat_completions"
+context_window = 128000
+
+[model.minimax-m2.7-cloud]
+model = "minimax-m2.7:cloud"
+base_url = "http://localhost:11434/v1"
+name = "Minimax M2.7 Cloud"
+api_backend = "chat_completions"
+context_window = 128000
+
+# ─── Optional cloud providers (only used when you set the env key) ────────
+
+[model.grok-4]
+model = "grok-4"
+base_url = "https://api.x.ai/v1"
+name = "Grok 4"
+env_key = "XAI_API_KEY"
+api_backend = "responses"
+context_window = 256000
+
+[model.claude-sonnet]
+model = "claude-sonnet-4-20250514"
+base_url = "https://api.anthropic.com"
+name = "Claude Sonnet 4"
+env_key = "ANTHROPIC_API_KEY"
+api_backend = "messages"
+extra_headers = { "anthropic-version" = "2023-06-01" }
+context_window = 200000
+
+[model.gpt-4.1]
+model = "gpt-4.1"
+base_url = "https://api.openai.com/v1"
+name = "GPT-4.1"
+env_key = "OPENAI_API_KEY"
+api_backend = "chat_completions"
+context_window = 128000
