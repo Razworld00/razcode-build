@@ -1,0 +1,10 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# Razcode Build — Multi-Provider Configuration (Local-First)
+# Copy to:  ~/.razcode/config.toml
+# ═══════════════════════════════════════════════════════════════════════════
+
+[models]
+default = "gpt-oss-120b-cloud"
+
+# ─── YOUR OLLAMA MODELS (from `ollama list`) ───────────────────────────────
+# All use the local OpenAI-compatible endpoint. No API key required.
