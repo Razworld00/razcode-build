@@ -10,6 +10,11 @@ It runs as a full-screen TUI that understands your codebase, edits files, execut
 
 ---
 
+> **Current status of this repository**  
+> This is a **partial snapshot** of the available workspace files (documentation, installer scripts, shared type definitions, and configuration templates). The full multi-crate Rust source tree (crates under `xai-grok-*`) is not present in the source material that was pushed. Further complete source will be added when available.
+
+---
+
 ## Why Razcode Build?
 
 - **Local-first**: Run completely offline / private with Ollama (or any local OpenAI-compatible server).
@@ -17,18 +22,16 @@ It runs as a full-screen TUI that understands your codebase, edits files, execut
 - **Full agent loop**: Plan mode, diffs, tools, subagents, MCP servers, skills, hooks, memory, and sandboxing.
 - **Extensible**: Plugins, AGENTS.md project rules, custom models, and the Agent Client Protocol (ACP).
 
-This repository contains the complete Rust source for the `razcode` CLI/TUI and its agent runtime (derived from the open-sourced Grok Build harness).
-
 ---
 
-## Quick Start (Local Ollama – recommended)
+## Quick Start (when full source is available)
 
 1. Make sure Ollama is installed and running:
    ```bash
-   ollama list          # should show your models
+   ollama list
    ```
 
-2. Install Razcode from this source tree:
+2. From a complete source tree:
    ```bash
    chmod +x install-local.sh
    ./install-local.sh --from-source
@@ -39,44 +42,7 @@ This repository contains the complete Rust source for the `razcode` CLI/TUI and 
    razcode
    ```
 
-Default model is **`gpt-oss:120b-cloud`**. All models from your `ollama list` are pre-registered.
-
-Switch models at runtime with `/model`.
-
----
-
-## Installing
-
-### From this source tree (recommended)
-
-```bash
-./install-local.sh --from-source
-```
-
-The installer will:
-- Build the binary
-- Install it as `~/.local/bin/razcode`
-- Write a complete `~/.razcode/config.toml` with all your Ollama models
-- Create a compatibility symlink `~/.grok` → `~/.razcode` so internal paths keep working
-
-### Authentication options
-
-- **Local Ollama** → no key required
-- Cloud providers → set the corresponding env vars (`XAI_API_KEY`, `ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, …)
-
----
-
-## Building from source
-
-Requirements:
-- Rust 1.94+ (see `rust-toolchain.toml`)
-- `protoc`
-- Standard C toolchain
-
-```bash
-cargo build -p xai-grok-pager-bin --release
-./target/release/xai-grok-pager   # or run install-local.sh
-```
+Default model is **`gpt-oss:120b-cloud`**. Switch models at runtime with `/model`.
 
 ---
 
@@ -84,34 +50,7 @@ cargo build -p xai-grok-pager-bin --release
 
 Primary config location: **`~/.razcode/config.toml`**
 
-A full template with every model from your `ollama list` is written by the installer and also lives at:
-
-```
-examples/config.multi-provider.toml
-```
-
-Key points:
-- `api_backend = "chat_completions"` is used for all Ollama models
-- `base_url = "http://localhost:11434/v1"` is the standard Ollama OpenAI-compatible endpoint
-- Default model is `gpt-oss-120b-cloud`
-
----
-
-## Project layout (high level)
-
-```
-razcode-build/
-├── crates/codegen/          # Core agent, TUI, tools, models, config
-│   ├── xai-grok-pager-bin/  # Main binary crate
-│   ├── xai-grok-agent/      # Agent loop & tool dispatch
-│   ├── xai-grok-models/     # Default model registry (updated for Ollama-first)
-│   └── …                    
-├── install-local.sh         # Local installer (enhanced)
-├── examples/                # Ready-to-use multi-provider config
-└── README.md
-```
-
-> **Note**: Internal crate names remain `xai-grok-*` (layout preserved). The user-facing binary and config are fully `razcode`.
+A multi-provider template lives at `config.multi-provider.toml` in this repo.
 
 ---
 
